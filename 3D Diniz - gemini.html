@@ -1,0 +1,2588 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- ===================================================================== -->
+  <!-- 1. METADADOS, SEO E CONFIGURAÇÕES INICIAIS DA PÁGINA                  -->
+  <!-- ===================================================================== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D Diniz | Impressões 3D Personalizadas, Action Figures &amp; Peças Sob Medida</title>
+  <meta name="description" content="Transformamos suas ideias e arquivos 3D em peças reais de alta precisão. Compre peças a pronta entrega via PIX ou peça seu orçamento personalizado." />
+  <meta name="theme-color" content="#f8fafc" />
+
+  <!-- Tags Open Graph para quando o link for compartilhado no Instagram ou WhatsApp -->
+  <meta property="og:title" content="3D Diniz | Studio de Impressão 3D" />
+  <meta property="og:description" content="Catálogo oficial pronta entrega e orçamentos personalizados." />
+  <meta property="og:type" content="website" />
+
+  <!-- ===================================================================== -->
+  <!-- 2. ESTILOS CSS PUROS (ORGANIZADOS E COMENTADOS PARA FÁCIL EDIÇÃO)     -->
+  <!-- ===================================================================== -->
+  <style>
+    /* ---------------------------------------------------------------------
+       2.1. VARIÁVEIS DE CORES E TEMAS (MODO CLARO PADRÃO E MODO ESCURO)
+       Para alterar as cores principais do site, basta editar os valores aqui.
+       --------------------------------------------------------------------- */
+    :root {
+      --bg-page: #f8fafc;          /* Fundo principal da página (Modo Claro) */
+      --bg-card: #ffffff;          /* Fundo dos cartões e modais */
+      --bg-subtle: #f1f5f9;        /* Fundo de campos de formulário e botões secundários */
+      --bg-header: rgba(255, 255, 255, 0.88);
+      --text-main: #0f172a;        /* Cor principal dos textos */
+      --text-muted: #64748b;       /* Cor secundária (descrições e legendas) */
+      --border-color: #e2e8f0;     /* Cor das bordas sutis */
+      --grid-line: rgba(6, 182, 212, 0.07);
+
+      /* Cores de destaque da marca 3D Diniz */
+      --primary: #06b6d4;          /* Ciano principal */
+      --primary-hover: #0891b2;    /* Ciano ao passar o mouse */
+      --primary-text: #042f2e;     /* Texto escuro sobre botão ciano */
+      --success: #10b981;          /* Verde (WhatsApp / Pronta Entrega / PIX) */
+      --success-hover: #059669;
+      --danger: #ef4444;           /* Vermelho (Excluir / Sair) */
+      --warning: #f59e0b;          /* Amarelo (Avaliações / Sob encomenda) */
+      --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 10px 25px rgba(15, 23, 42, 0.08);
+      --shadow-lg: 0 20px 40px rgba(15, 23, 42, 0.16);
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+    }
+
+    /* Sobrescreve as variáveis acima quando a classe .dark está ativa no <html> */
+    html.dark {
+      --bg-page: #090d16;
+      --bg-card: #111827;
+      --bg-subtle: #1e293b;
+      --bg-header: rgba(9, 13, 22, 0.88);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-color: #1e293b;
+      --grid-line: rgba(34, 211, 238, 0.06);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+      --shadow-md: 0 10px 25px rgba(0, 0, 0, 0.35);
+      --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.55);
+    }
+
+    /* ---------------------------------------------------------------------
+       2.2. RESET BÁSICO E TIPOGRAFIA
+       --------------------------------------------------------------------- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.5;
+      transition: background-color 0.2s ease, color 0.2s ease;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    /* Classe utilitária usada pelo JavaScript para esconder/mostrar elementos */
+    .hidden {
+      display: none !important;
+    }
+
+    /* Fonte monoespaçada para preços, códigos PIX e etiquetas técnicas */
+    .font-mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    /* Animação suave de entrada para modais e cartões */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-up {
+      animation: fadeUp 0.3s ease-out forwards;
+    }
+
+    /* Container centralizador padrão do site */
+    .container {
+      width: 100%;
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ---------------------------------------------------------------------
+       2.3. CABEÇALHO (HEADER) DA VITRINE
+       --------------------------------------------------------------------- */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: var(--bg-header);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .header-inner {
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, #06b6d4, #2563eb);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(6, 182, 212, 0.28);
+    }
+
+    .brand-accent {
+      color: var(--primary);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-link {
+      padding: 8px 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--primary);
+    }
+
+    .icon-btn {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.15s, background-color 0.2s;
+    }
+
+    .icon-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      min-width: 20px;
+      height: 20px;
+      padding: 0 5px;
+      border-radius: 999px;
+      background-color: var(--primary);
+      color: var(--primary-text);
+      font-size: 0.7rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ---------------------------------------------------------------------
+       2.4. BOTÕES PADRONIZADOS
+       --------------------------------------------------------------------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: var(--radius-lg);
+      font-size: 0.875rem;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+
+    .btn-sm {
+      padding: 9px 15px;
+      border-radius: var(--radius-md);
+      font-size: 0.8rem;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--primary-text);
+      box-shadow: 0 6px 18px rgba(6, 182, 212, 0.22);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+      color: #ffffff;
+    }
+
+    .btn-success {
+      background-color: var(--success);
+      color: #042f2e;
+      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.22);
+    }
+
+    .btn-success:hover {
+      background-color: var(--success-hover);
+      color: #ffffff;
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-card);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--primary);
+    }
+
+    .btn-subtle {
+      background-color: var(--bg-subtle);
+      color: var(--text-main);
+    }
+
+    .btn-danger {
+      background-color: rgba(239, 68, 68, 0.12);
+      color: var(--danger);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+    }
+
+    .btn-danger:hover {
+      background-color: var(--danger);
+      color: #ffffff;
+    }
+
+    .w-full {
+      width: 100%;
+    }
+
+    /* ---------------------------------------------------------------------
+       2.5. SEÇÃO HERO (APRESENTAÇÃO CLEAN)
+       --------------------------------------------------------------------- */
+    .hero-section {
+      text-align: center;
+      padding: 48px 20px 36px;
+      background-size: 32px 32px;
+      background-image:
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    }
+
+    .hero-inner {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .hero-pill {
+      display: inline-block;
+      padding: 5px 14px;
+      border-radius: 999px;
+      background-color: rgba(6, 182, 212, 0.12);
+      color: var(--primary-hover);
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    html.dark .hero-pill {
+      color: var(--primary);
+    }
+
+    .hero-title {
+      font-size: clamp(1.85rem, 4vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.18;
+      margin-bottom: 12px;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto 24px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    /* ---------------------------------------------------------------------
+       2.6. BUSCA, FILTROS E GRADE DE PRODUTOS
+       --------------------------------------------------------------------- */
+    .main-content {
+      padding-top: 12px;
+      padding-bottom: 72px;
+      display: flex;
+      flex-direction: column;
+      gap: 64px;
+    }
+
+    .catalog-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .search-box {
+      position: relative;
+      flex: 1;
+      min-width: 240px;
+      max-width: 420px;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: var(--radius-lg);
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .input-field:focus {
+      border-color: var(--primary);
+    }
+
+    .search-input {
+      padding-left: 40px;
+    }
+
+    .ready-checkbox-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 16px;
+      border-radius: var(--radius-lg);
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .category-pills {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      margin-bottom: 22px;
+      scrollbar-width: none;
+    }
+
+    .category-pills::-webkit-scrollbar {
+      display: none;
+    }
+
+    .pill-btn {
+      padding: 8px 16px;
+      border-radius: var(--radius-lg);
+      font-size: 0.8rem;
+      font-weight: 600;
+      white-space: nowrap;
+      background-color: var(--bg-card);
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+      transition: all 0.2s;
+    }
+
+    .pill-btn:hover {
+      border-color: var(--primary);
+      color: var(--text-main);
+    }
+
+    .pill-btn.active {
+      background-color: var(--primary);
+      color: var(--primary-text);
+      border-color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* Grade responsiva de produtos: ajusta colunas automaticamente */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .product-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary);
+    }
+
+    .product-thumb {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      background-color: #0f172a;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .product-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+      transition: transform 0.35s ease;
+    }
+
+    .product-card:hover .product-thumb img {
+      transform: scale(1.04);
+    }
+
+    .badge-ready {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      padding: 5px 10px;
+      border-radius: 10px;
+      background-color: var(--success);
+      color: #042f2e;
+      font-size: 0.72rem;
+      font-weight: 800;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .product-body {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-cat {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .product-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-bottom: 6px;
+      transition: color 0.2s;
+    }
+
+    .product-title:hover {
+      color: var(--primary);
+    }
+
+    .product-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .product-footer {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .product-price {
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 48px 20px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+    }
+
+    /* ---------------------------------------------------------------------
+       2.7. SEÇÃO DE CONTATO E ENCOMENDA SOB MEDIDA
+       --------------------------------------------------------------------- */
+    .contact-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 36px;
+      box-shadow: var(--shadow-sm);
+      display: grid;
+      grid-template-columns: 1fr 1.35fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .contact-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background-color: rgba(16, 185, 129, 0.12);
+      color: var(--success-hover);
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    html.dark .contact-tag {
+      color: var(--success);
+    }
+
+    .contact-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+
+    .contact-text {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .quote-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .quote-form .input-field {
+      background-color: var(--bg-subtle);
+    }
+
+    .quote-actions-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .file-upload-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: var(--radius-lg);
+      background-color: var(--bg-subtle);
+      border: 1px dashed var(--text-muted);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      max-width: 260px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .file-upload-label:hover {
+      border-color: var(--primary);
+      color: var(--text-main);
+    }
+
+    /* ---------------------------------------------------------------------
+       2.8. RODAPÉ E BOTÃO FLUTUANTE DO WHATSAPP
+       --------------------------------------------------------------------- */
+    .site-footer {
+      border-top: 1px solid var(--border-color);
+      padding: 28px 20px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      transition: color 0.2s;
+    }
+
+    .footer-link-btn:hover {
+      color: var(--primary);
+    }
+
+    .floating-whatsapp {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      z-index: 40;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background-color: var(--success);
+      color: #042f2e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.38);
+      transition: transform 0.2s ease;
+    }
+
+    .floating-whatsapp:hover {
+      transform: scale(1.07);
+    }
+
+    /* ---------------------------------------------------------------------
+       2.9. PAINEL ADMINISTRATIVO (APENAS QUANDO O LOJISTA FAZ LOGIN)
+       --------------------------------------------------------------------- */
+    .admin-portal {
+      min-height: 100vh;
+      padding: 28px 20px 64px;
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .admin-header-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .admin-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background-color: rgba(16, 185, 129, 0.14);
+      color: var(--success-hover);
+      font-size: 0.7rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    html.dark .admin-badge {
+      color: var(--success);
+    }
+
+    .admin-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .admin-tab-btn {
+      padding: 9px 16px;
+      border-radius: var(--radius-md);
+      font-size: 0.8rem;
+      font-weight: 600;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+    }
+
+    .admin-tab-btn.active {
+      background-color: var(--text-main);
+      color: var(--bg-page);
+      border-color: var(--text-main);
+      font-weight: 700;
+    }
+
+    html.dark .admin-tab-btn.active {
+      background-color: var(--primary);
+      color: var(--primary-text);
+      border-color: var(--primary);
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .kpi-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+    }
+
+    .kpi-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .kpi-value {
+      font-size: 1.65rem;
+      font-weight: 800;
+      margin: 4px 0;
+    }
+
+    .kpi-sub {
+      font-size: 0.72rem;
+      color: var(--success-hover);
+      font-weight: 600;
+    }
+
+    html.dark .kpi-sub {
+      color: var(--success);
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1.7fr 1fr;
+      gap: 20px;
+    }
+
+    .panel-box {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 22px;
+    }
+
+    .panel-box-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .chart-wrapper {
+      width: 100%;
+      height: 240px;
+    }
+
+    .pixel-log-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 230px;
+      overflow-y: auto;
+    }
+
+    .pixel-log-item {
+      padding: 9px 12px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-subtle);
+      font-size: 0.74rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    /* Lista de produtos no Painel Admin */
+    .admin-product-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .admin-product-row:last-child {
+      border-bottom: none;
+    }
+
+    .admin-product-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .admin-product-thumb {
+      width: 64px;
+      height: 54px;
+      border-radius: var(--radius-md);
+      object-fit: cover;
+      border: 1px solid var(--border-color);
+    }
+
+    /* Caixa de entrada de pedidos e mensagens */
+    .inbox-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 16px;
+    }
+
+    .inbox-card {
+      padding: 16px;
+      border-radius: var(--radius-lg);
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    /* ---------------------------------------------------------------------
+       2.10. MODAIS (JANELAS SOBREPOSTAS)
+       --------------------------------------------------------------------- */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background-color: rgba(2, 6, 23, 0.72);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      width: 100%;
+      max-width: 520px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .modal-card-lg {
+      max-width: 720px;
+    }
+
+    .modal-card-sm {
+      max-width: 380px;
+      padding: 24px;
+    }
+
+    .modal-header {
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background-color: var(--bg-card);
+      z-index: 5;
+    }
+
+    .modal-body {
+      padding: 22px;
+    }
+
+    .modal-footer {
+      padding: 18px 22px;
+      border-top: 1px solid var(--border-color);
+      background-color: var(--bg-subtle);
+    }
+
+    /* Detalhes do produto dentro do modal */
+    .product-detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .product-detail-img {
+      width: 100%;
+      height: 100%;
+      min-height: 250px;
+      object-fit: cover;
+      background-color: #0f172a;
+    }
+
+    /* Carrinho e PIX */
+    .cart-item-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px;
+      border-radius: var(--radius-lg);
+      background-color: var(--bg-subtle);
+      margin-bottom: 10px;
+    }
+
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .qty-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      font-weight: 700;
+    }
+
+    .pix-box {
+      padding: 16px 22px;
+      background-color: rgba(6, 182, 212, 0.1);
+      border-top: 1px solid rgba(6, 182, 212, 0.25);
+    }
+
+    .pix-box-inner {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    .qr-box {
+      width: 84px;
+      height: 84px;
+      padding: 6px;
+      border-radius: 12px;
+      background-color: #ffffff;
+      color: #0f172a;
+      flex-shrink: 0;
+    }
+
+    /* Pré-visualização de imagem no Editor de Produto */
+    .image-upload-box {
+      padding: 14px;
+      border-radius: var(--radius-lg);
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .image-preview-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .image-preview-thumb {
+      width: 76px;
+      height: 60px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 1px solid var(--border-color);
+      background-color: #0f172a;
+    }
+
+    /* ---------------------------------------------------------------------
+       2.11. BANNER LGPD E NOTIFICAÇÕES (TOAST)
+       --------------------------------------------------------------------- */
+    .lgpd-banner {
+      position: fixed;
+      bottom: 18px;
+      left: 18px;
+      right: 18px;
+      max-width: 420px;
+      z-index: 45;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .toast-container {
+      position: fixed;
+      top: 80px;
+      right: 18px;
+      z-index: 60;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-width: 320px;
+      width: calc(100% - 36px);
+      pointer-events: none;
+    }
+
+    .toast-item {
+      pointer-events: auto;
+      background-color: #0f172a;
+      color: #ffffff;
+      border: 1px solid rgba(6, 182, 212, 0.45);
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      font-size: 0.8rem;
+      font-weight: 500;
+      box-shadow: var(--shadow-md);
+    }
+
+    /* ---------------------------------------------------------------------
+       2.12. RESPONSIVIDADE PARA CELULARES E TABLETS
+       --------------------------------------------------------------------- */
+    @media (max-width: 768px) {
+      .nav-link {
+        display: none;
+      }
+
+      .contact-card {
+        grid-template-columns: 1fr;
+        padding: 24px;
+        gap: 24px;
+      }
+
+      .form-row-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-detail-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================================================================== -->
+  <!-- 3. VITRINE PÚBLICA DO CLIENTE (APENAS PRODUTOS E CONTATO)             -->
+  <!-- ===================================================================== -->
+  <div id="storefront-view">
+
+    <!-- 3.1. Cabeçalho Superior Fixo -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <!-- Logotipo da 3D Diniz -->
+        <a href="#" class="brand-logo">
+          <div class="brand-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+          </div>
+          <span>3D <span class="brand-accent">Diniz</span></span>
+        </a>
+
+        <!-- Links rápidos, Alternância de Tema (Claro/Escuro) e Sacola -->
+        <div class="header-actions">
+          <a href="#catalogo" class="nav-link">Produtos</a>
+          <a href="#contato" class="nav-link">Contato</a>
+
+          <!-- Botão de Modo Claro / Escuro -->
+          <button type="button" onclick="toggleDarkMode()" class="icon-btn" aria-label="Alternar tema claro ou escuro" title="Alternar tema">
+            <!-- Ícone Lua (visível no modo claro) -->
+            <svg id="icon-moon" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <!-- Ícone Sol (visível no modo escuro) -->
+            <svg id="icon-sun" class="hidden" width="17" height="17" fill="none" stroke="#fbbf24" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </button>
+
+          <!-- Botão da Sacola de Compras -->
+          <button type="button" onclick="openCartModal()" class="icon-btn" aria-label="Abrir sacola de compras" title="Sua sacola">
+            <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span id="cart-badge" class="cart-badge font-mono">0</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- 3.2. Seção Principal de Boas-Vindas (Hero) -->
+    <section class="hero-section">
+      <div class="hero-inner">
+        <span class="hero-pill font-mono"><a href="https://www.instagram.com/3ddiniz/">@3ddiniz</a> • Impressões 3D</span>
+        <h1 class="hero-title">Peças exclusivas impressas em 3D</h1>
+        <p class="hero-subtitle">
+          Escolha uma peça pronta abaixo para comprar online ou envie sua ideia para fazermos sob medida.
+        </p>
+        <div class="hero-buttons">
+          <a href="#catalogo" class="btn btn-primary">Ver Produtos</a>
+          <a href="#contato" class="btn btn-secondary">Pedir Peça Personalizada</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3.3. Área Principal: Vitrine de Produtos + Formulário de Contato -->
+    <main class="container main-content">
+
+      <!-- SEÇÃO A: CATÁLOGO DE PRODUTOS -->
+      <section id="catalogo">
+        <!-- Barra de busca e filtro rápido de pronta entrega -->
+        <div class="catalog-controls">
+          <div class="search-box">
+            <svg class="search-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="search-input" oninput="filterAndRenderProducts()" placeholder="Buscar peça..." class="input-field search-input" />
+          </div>
+
+          <label class="ready-checkbox-label">
+            <input type="checkbox" id="filter-ready-only" onchange="filterAndRenderProducts()" />
+            <span>⚡ Só Pronta Entrega</span>
+          </label>
+        </div>
+
+        <!-- Botões de Categorias (gerados automaticamente pelo JavaScript) -->
+        <div id="category-pills" class="category-pills"></div>
+
+        <!-- Grade de Cartões de Produtos (preenchida pelo JavaScript) -->
+        <div id="products-grid" class="products-grid"></div>
+
+        <!-- Mensagem exibida quando a busca não encontra nenhuma peça -->
+        <div id="products-empty" class="empty-state hidden">
+          <p style="font-weight: 700; margin-bottom: 6px;">Nenhuma peça encontrada</p>
+          <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px;">
+            Podemos imprimir qualquer modelo sob encomenda para você.
+          </p>
+          <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+            <button type="button" onclick="resetFilters()" class="btn btn-sm btn-subtle">Mostrar Tudo</button>
+            <a href="#contato" class="btn btn-sm btn-primary">Solicitar Orçamento</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO B: CONTATO E ENCOMENDA SOB MEDIDA -->
+      <section id="contato">
+        <div class="contact-card">
+          <!-- Coluna Esquerda: Chamada direta para o WhatsApp -->
+          <div>
+            <span class="contact-tag font-mono">ATENDIMENTO DIRETO</span>
+            <h2 class="contact-title">Quer encomendar ou tirar uma dúvida?</h2>
+            <p class="contact-text">
+              Tem uma ideia, foto de referência ou arquivo <code class="font-mono">.STL</code>? Fale direto conosco pelo WhatsApp ou envie pelo formulário ao lado.
+            </p>
+            <button type="button" onclick="openDirectWhatsApp('Olá Diniz! Vim pelo site e gostaria de fazer um orçamento de impressão 3D.')" class="btn btn-success">
+              <svg width="19" height="19" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/>
+              </svg>
+              <span>Conversar no WhatsApp</span>
+            </button>
+          </div>
+
+          <!-- Coluna Direita: Formulário de Contato / Orçamento com Anexo -->
+          <form id="quote-form" onsubmit="submitCustomQuote(event)" class="quote-form">
+            <div class="form-row-2">
+              <input type="text" id="quote-name" required placeholder="Seu nome *" class="input-field" />
+              <input type="tel" id="quote-whatsapp" required placeholder="Seu WhatsApp *" class="input-field" />
+            </div>
+
+            <textarea id="quote-notes" rows="3" required placeholder="Descreva a peça que você precisa, cor ou link de referência... *" class="input-field"></textarea>
+
+            <div class="quote-actions-row">
+              <label for="quote-file-input" class="file-upload-label">
+                <svg width="16" height="16" fill="none" stroke="#06b6d4" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="17 8 12 3 7 8"></polyline>
+                  <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <span id="quote-file-label">Anexar arquivo 3D ou foto</span>
+                <input id="quote-file-input" type="file" accept=".stl,.obj,.3mf,.zip,image/*" onchange="handleQuoteFileChange(event)" class="hidden" />
+              </label>
+
+              <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- 3.4. Rodapé Discreto com Acesso Restrito do Lojista -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>© 3D Diniz • Impressões 3D Sob Medida</span>
+        <div class="footer-links">
+          <button type="button" onclick="openPrivacyModal()" class="footer-link-btn">Privacidade</button>
+          <button type="button" onclick="handleAdminAccess()" class="footer-link-btn">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            <span>Área do Lojista</span>
+          </button>
+        </div>
+      </div>
+    </footer>
+
+    <!-- 3.5. Botão Flutuante Único do WhatsApp -->
+    <button type="button" onclick="openDirectWhatsApp('Olá Diniz! Vim pelo seu site e gostaria de fazer um pedido.')" class="floating-whatsapp" aria-label="Falar no WhatsApp">
+      <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 4. PAINEL ADMINISTRATIVO DO DONO (OCULTO DOS CLIENTES ATÉ O LOGIN)    -->
+  <!-- ===================================================================== -->
+  <section id="view-admin" class="admin-portal hidden animate-fade-up">
+
+    <!-- 4.1. Cabeçalho do Painel Administrativo -->
+    <div class="admin-header-card">
+      <div>
+        <span class="admin-badge font-mono">PAINEL DO LOJISTA</span>
+        <h2 style="font-size: 1.4rem; font-weight: 800;">Gestão &amp; Métricas • 3D Diniz</h2>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">
+          Área restrita para gerenciar produtos, pedidos PIX, mensagens e métricas do Instagram.
+        </p>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+        <button type="button" onclick="copyBioLink()" class="btn btn-sm btn-subtle">🔗 Copiar Link da Bio</button>
+        <button type="button" onclick="openProductEditorModal()" class="btn btn-sm btn-primary">+ Novo Produto</button>
+        <button type="button" onclick="logoutAdmin()" class="btn btn-sm btn-danger">Sair para Loja</button>
+      </div>
+    </div>
+
+    <!-- 4.2. Abas de Navegação Interna do Painel -->
+    <div class="admin-tabs">
+      <button type="button" onclick="switchAdminSubTab('dashboard')" id="admin-sub-btn-dashboard" class="admin-tab-btn active">
+        📊 Dashboard &amp; Métricas
+      </button>
+      <button type="button" onclick="switchAdminSubTab('products')" id="admin-sub-btn-products" class="admin-tab-btn">
+        📦 Produtos (<span id="admin-prod-count">0</span>)
+      </button>
+      <button type="button" onclick="switchAdminSubTab('inbox')" id="admin-sub-btn-inbox" class="admin-tab-btn">
+        📥 Pedidos &amp; Mensagens (<span id="admin-inbox-count">0</span>)
+      </button>
+      <button type="button" onclick="switchAdminSubTab('settings')" id="admin-sub-btn-settings" class="admin-tab-btn">
+        ⚙️ PIX, WhatsApp &amp; Pixels
+      </button>
+    </div>
+
+    <!-- 4.3. ABA A: DASHBOARD, KPIs E GRÁFICO DE CONVERSÃO -->
+    <div id="admin-sub-dashboard">
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <p class="kpi-label">Cliques Link da Bio (7d)</p>
+          <p id="kpi-visits" class="kpi-value font-mono">1.284</p>
+          <span class="kpi-sub">+24% vs. semana anterior</span>
+        </div>
+        <div class="kpi-card">
+          <p class="kpi-label">Contatos &amp; Orçamentos</p>
+          <p id="kpi-leads" class="kpi-value font-mono" style="color: var(--primary);">47</p>
+          <span class="kpi-sub">Via formulário e WhatsApp</span>
+        </div>
+        <div class="kpi-card">
+          <p class="kpi-label">Pedidos via PIX</p>
+          <p id="kpi-orders" class="kpi-value font-mono" style="color: var(--success);">19</p>
+          <span class="kpi-sub">Conversão: 5.1%</span>
+        </div>
+        <div class="kpi-card">
+          <p class="kpi-label">Receita Estimada (Mês)</p>
+          <p id="kpi-revenue" class="kpi-value font-mono">R$ 2.840</p>
+          <span class="kpi-sub">Ticket médio: R$ 149,50</span>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+        <!-- Gráfico SVG puro gerado via JavaScript -->
+        <div class="panel-box">
+          <div class="panel-box-header">
+            <div>
+              <h3 style="font-size: 0.92rem; font-weight: 700;">Desempenho do Link da Bio (Últimos 7 dias)</h3>
+              <p style="font-size: 0.75rem; color: var(--text-muted);">Visitas vs. Conversões</p>
+            </div>
+            <div style="display: flex; gap: 12px; font-size: 0.72rem;">
+              <span><strong style="color: var(--primary);">■</strong> Visitas</span>
+              <span><strong style="color: var(--success);">■</strong> Conversões</span>
+            </div>
+          </div>
+          <div id="analytics-chart" class="chart-wrapper"></div>
+        </div>
+
+        <!-- Log ao vivo de eventos de rastreamento -->
+        <div class="panel-box">
+          <div class="panel-box-header">
+            <h3 style="font-size: 0.92rem; font-weight: 700;">Eventos GA4 &amp; Meta Pixel</h3>
+            <span class="admin-badge font-mono" style="margin: 0;">AO VIVO</span>
+          </div>
+          <div id="pixel-events-log" class="pixel-log-list font-mono"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4.4. ABA B: GERENCIAMENTO DE PRODUTOS (EDITAR / ADICIONAR / EXCLUIR) -->
+    <div id="admin-sub-products" class="hidden">
+      <div class="panel-box">
+        <div class="panel-box-header">
+          <div>
+            <h3 style="font-size: 1rem; font-weight: 700;">Catálogo de Produtos</h3>
+            <p style="font-size: 0.78rem; color: var(--text-muted);">Adicione ou edite peças com upload de imagem ou URL.</p>
+          </div>
+          <button type="button" onclick="openProductEditorModal()" class="btn btn-sm btn-primary">+ Nova Peça</button>
+        </div>
+        <div id="admin-products-list"></div>
+      </div>
+    </div>
+
+    <!-- 4.5. ABA C: CAIXA DE ENTRADA DE PEDIDOS PIX E MENSAGENS -->
+    <div id="admin-sub-inbox" class="hidden">
+      <div class="panel-box">
+        <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 16px;">📥 Pedidos PIX &amp; Mensagens de Clientes</h3>
+        <div id="admin-orders-quotes-list" class="inbox-grid"></div>
+      </div>
+    </div>
+
+    <!-- 4.6. ABA D: CONFIGURAÇÕES DE PIX, WHATSAPP E PIXELS -->
+    <div id="admin-sub-settings" class="hidden" style="max-width: 540px;">
+      <form onsubmit="saveStoreSettings(event)" class="panel-box" style="display: flex; flex-direction: column; gap: 14px;">
+        <h3 style="font-size: 1rem; font-weight: 700;">🔑 Configurações da Loja</h3>
+
+        <div>
+          <label style="display: block; font-size: 0.78rem; font-weight: 600; margin-bottom: 4px;">WhatsApp Comercial (DDI + DDD + Número)</label>
+          <input type="text" id="cfg-whatsapp" class="input-field font-mono" />
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 0.78rem; font-weight: 600; margin-bottom: 4px;">Chave PIX</label>
+          <input type="text" id="cfg-pix" class="input-field font-mono" />
+        </div>
+
+        <div class="form-row-2">
+          <div>
+            <label style="display: block; font-size: 0.78rem; font-weight: 600; margin-bottom: 4px;">Google Analytics 4</label>
+            <input type="text" id="cfg-ga4" class="input-field font-mono" />
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.78rem; font-weight: 600; margin-bottom: 4px;">Meta Pixel ID</label>
+            <input type="text" id="cfg-pixel" class="input-field font-mono" />
+          </div>
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 0.78rem; font-weight: 600; margin-bottom: 4px;">Google Tag Manager (GTM)</label>
+          <input type="text" id="cfg-gtm" class="input-field font-mono" />
+        </div>
+
+        <button type="submit" class="btn btn-primary w-full">Salvar Configurações</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 5. JANELAS MODAIS (DETALHES, SACOLA/PIX, LOGIN, EDITOR DE PRODUTO)    -->
+  <!-- ===================================================================== -->
+
+  <!-- 5.1. Modal: Detalhes do Produto -->
+  <div id="product-detail-modal" class="modal-backdrop hidden">
+    <div class="modal-card modal-card-lg animate-fade-up">
+      <div id="product-detail-content"></div>
+    </div>
+  </div>
+
+  <!-- 5.2. Modal: Sacola de Compras & Pagamento PIX / WhatsApp -->
+  <div id="cart-modal" class="modal-backdrop hidden">
+    <div class="modal-card animate-fade-up">
+      <div class="modal-header">
+        <h3 style="font-size: 1.05rem; font-weight: 800;">🛒 Seu Pedido 3D Diniz</h3>
+        <button type="button" onclick="closeModal('cart-modal')" class="icon-btn" style="width: 32px; height: 32px;">✕</button>
+      </div>
+
+      <div id="cart-items-container" class="modal-body"></div>
+
+      <!-- Caixa de Pagamento PIX (aparece ao clicar em "Pagar Online via PIX") -->
+      <div id="pix-checkout-box" class="pix-box hidden">
+        <div class="pix-box-inner">
+          <div class="qr-box">
+            <svg viewBox="0 0 100 100" width="100%" height="100%" fill="currentColor">
+              <rect x="10" y="10" width="25" height="25" fill="none" stroke="currentColor" stroke-width="6"/>
+              <rect x="17" y="17" width="11" height="11"/>
+              <rect x="65" y="10" width="25" height="25" fill="none" stroke="currentColor" stroke-width="6"/>
+              <rect x="72" y="17" width="11" height="11"/>
+              <rect x="10" y="65" width="25" height="25" fill="none" stroke="currentColor" stroke-width="6"/>
+              <rect x="17" y="72" width="11" height="11"/>
+              <rect x="45" y="15" width="10" height="10"/>
+              <rect x="45" y="45" width="12" height="12"/>
+              <rect x="65" y="45" width="10" height="10"/>
+              <rect x="80" y="65" width="10" height="25"/>
+              <rect x="45" y="75" width="25" height="10"/>
+            </svg>
+          </div>
+          <div style="flex: 1; min-width: 0;">
+            <p style="font-size: 0.8rem; font-weight: 700; color: var(--primary-hover);">Pagamento Instantâneo via PIX</p>
+            <p style="font-size: 0.72rem; color: var(--text-muted); margin: 2px 0 8px;">Copie o código abaixo e pague no app do seu banco:</p>
+            <div style="display: flex; gap: 6px;">
+              <input type="text" id="pix-copy-paste-code" readonly class="input-field font-mono" style="padding: 6px 8px; font-size: 0.68rem;" />
+              <button type="button" onclick="copyPixCode()" class="btn btn-sm btn-primary">Copiar</button>
+            </div>
+          </div>
+        </div>
+        <button type="button" onclick="confirmPixOrder()" class="btn btn-sm btn-success w-full">✓ Já fiz o PIX • Confirmar Pedido</button>
+      </div>
+
+      <div id="cart-footer" class="modal-footer">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <span style="font-size: 0.85rem; color: var(--text-muted);">Total do Pedido:</span>
+          <span id="cart-total-price" class="font-mono" style="font-size: 1.2rem; font-weight: 800;">R$ 0,00</span>
+        </div>
+        <div class="form-row-2">
+          <button type="button" onclick="showPixCheckout()" class="btn btn-sm btn-primary">💠 Pagar Online via PIX</button>
+          <button type="button" onclick="checkoutViaWhatsApp()" class="btn btn-sm btn-success">📲 Fechar no WhatsApp</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5.3. Modal: Login do Painel Administrativo -->
+  <div id="admin-login-modal" class="modal-backdrop hidden">
+    <div class="modal-card modal-card-sm animate-fade-up">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+        <span class="hero-pill font-mono" style="margin: 0;">ÁREA RESTRITA</span>
+        <button type="button" onclick="closeModal('admin-login-modal')" class="icon-btn" style="width: 30px; height: 30px;">✕</button>
+      </div>
+
+      <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 4px;">Acesso do Criador • 3D Diniz</h3>
+      <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 18px;">
+        Entre para editar produtos, trocar fotos e acompanhar métricas.
+      </p>
+
+      <form onsubmit="submitAdminLogin(event)" style="display: flex; flex-direction: column; gap: 12px;">
+        <div>
+          <label style="display: block; font-size: 0.76rem; font-weight: 600; margin-bottom: 4px;">E-mail Administrativo</label>
+          <input type="email" id="login-email" required placeholder="diniz@3ddiniz.com.br" class="input-field" />
+        </div>
+        <div>
+          <label style="display: block; font-size: 0.76rem; font-weight: 600; margin-bottom: 4px;">Senha</label>
+          <input type="password" id="login-password" required placeholder="••••••••" class="input-field" />
+        </div>
+
+        <button type="submit" class="btn btn-primary w-full">Entrar no Painel</button>
+        <button type="button" onclick="fillDemoAdminCredentials()" class="btn btn-sm btn-subtle w-full">⚡ Preencher Acesso Demonstração</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 5.4. Modal: Cadastro e Edição de Produtos (Upload + URL de Imagem) -->
+  <div id="product-editor-modal" class="modal-backdrop hidden">
+    <div class="modal-card animate-fade-up">
+      <div class="modal-header">
+        <h3 id="editor-modal-title" style="font-size: 1.05rem; font-weight: 800;">Cadastrar Nova Peça 3D</h3>
+        <button type="button" onclick="closeModal('product-editor-modal')" class="icon-btn" style="width: 32px; height: 32px;">✕</button>
+      </div>
+
+      <form id="product-editor-form" onsubmit="saveProductFromEditor(event)" class="modal-body" style="display: flex; flex-direction: column; gap: 14px;">
+        <input type="hidden" id="edit-prod-id" />
+
+        <div>
+          <label style="display: block; font-size: 0.76rem; font-weight: 600; margin-bottom: 4px;">Nome da Peça 3D *</label>
+          <input type="text" id="edit-prod-name" required placeholder="Ex: Busto Batman Arkham Knight 22cm" class="input-field" />
+        </div>
+
+        <div class="form-row-2">
+          <div>
+            <label style="display: block; font-size: 0.76rem; font-weight: 600; margin-bottom: 4px;">Categoria *</label>
+            <select id="edit-prod-category" class="input-field">
+              <option value="Action Figures">Action Figures</option>
+              <option value="Decoração">Decoração</option>
+              <option value="Utilidades & Setup">Utilidades &amp; Setup</option>
+              <option value="Peças Técnicas">Peças Técnicas</option>
+              <option value="Personalizados">Personalizados</option>
+            </select>
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.76rem; font-weight: 600; margin-bottom: 4px;">Preço (R$) *</label>
+            <input type="number" step="0.01" min="1" id="edit-prod-price" required placeholder="89.90" class="input-field font-mono" />
+          </div>
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 0.76rem; font-weight: 600; margin-bottom: 4px;">Material de Impressão</label>
+          <input type="text" id="edit-prod-material" value="PLA+ Premium" class="input-field" />
+        </div>
+
+        <!-- Bloco de Imagem: Upload de Arquivo Local ou URL Externa -->
+        <div class="image-upload-box">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 0.78rem; font-weight: 700;">Imagem do Produto (Upload ou URL)</span>
+            <span class="font-mono" style="font-size: 0.68rem; color: var(--primary);">PREVIEW</span>
+          </div>
+
+          <div class="form-row-2">
+            <label for="edit-prod-file" class="file-upload-label" style="max-width: 100%; justify-content: center; background-color: var(--bg-card);">
+              <span>📁 Upload de Foto</span>
+              <input type="file" id="edit-prod-file" accept="image/*" onchange="handleProductImageUpload(event)" class="hidden" />
+            </label>
+
+            <input type="url" id="edit-prod-url" oninput="handleProductImageUrlInput(event)" placeholder="Ou cole URL (https://...)" class="input-field" style="padding: 9px 12px; font-size: 0.78rem;" />
+          </div>
+
+          <div class="image-preview-row">
+            <img id="edit-prod-preview" src="https://placehold.co/400x300/f1f5f9/0891b2?text=Preview+3D" alt="Pré-visualização" class="image-preview-thumb" />
+            <p id="edit-prod-img-status" style="font-size: 0.72rem; color: var(--text-muted);">
+              Envie uma foto do seu celular/PC ou cole um link direto da imagem.
+            </p>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div>
+            <label style="display: block; font-size: 0.76rem; font-weight: 600; margin-bottom: 4px;">Dimensões / Detalhes</label>
+            <input type="text" id="edit-prod-specs" placeholder="Ex: 18cm altura" class="input-field" />
+          </div>
+          <div style="display: flex; align-items: center; padding-top: 18px;">
+            <label style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.78rem; font-weight: 600; cursor: pointer;">
+              <input type="checkbox" id="edit-prod-ready" checked />
+              <span>⚡ Pronta Entrega</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 0.76rem; font-weight: 600; margin-bottom: 4px;">Descrição do Produto</label>
+          <textarea id="edit-prod-desc" rows="2" placeholder="Acabamento, cores disponíveis..." class="input-field"></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px; padding-top: 6px;">
+          <button type="button" onclick="closeModal('product-editor-modal')" class="btn btn-sm btn-subtle">Cancelar</button>
+          <button type="submit" class="btn btn-sm btn-primary">Salvar Peça</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 5.5. Modal: Confirmação de Exclusão -->
+  <div id="confirm-modal" class="modal-backdrop hidden">
+    <div class="modal-card modal-card-sm animate-fade-up">
+      <h3 id="confirm-modal-title" style="font-size: 1rem; font-weight: 700; margin-bottom: 6px;">Confirmar ação</h3>
+      <p id="confirm-modal-text" style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 18px;">Tem certeza?</p>
+      <div style="display: flex; justify-content: flex-end; gap: 8px;">
+        <button type="button" onclick="closeModal('confirm-modal')" class="btn btn-sm btn-subtle">Cancelar</button>
+        <button type="button" id="confirm-modal-action-btn" class="btn btn-sm btn-danger">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5.6. Modal: Política de Privacidade & LGPD -->
+  <div id="privacy-modal" class="modal-backdrop hidden">
+    <div class="modal-card modal-card-sm" style="max-width: 480px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <h3 style="font-size: 1rem; font-weight: 800;">🔒 Privacidade &amp; LGPD</h3>
+        <button type="button" onclick="closeModal('privacy-modal')" class="icon-btn" style="width: 30px; height: 30px;">✕</button>
+      </div>
+      <div style="font-size: 0.8rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px;">
+        <p><strong>1. Coleta Mínima de Dados:</strong> Coletamos apenas nome, WhatsApp e arquivos de projeto enviados voluntariamente para fins de orçamento e entrega.</p>
+        <p><strong>2. Confidencialidade de Arquivos .STL:</strong> Seus modelos 3D são utilizados exclusivamente para a produção da sua peça.</p>
+        <p><strong>3. Métricas Anonimizadas:</strong> Utilizamos métricas de acesso para entender quais peças fazem mais sucesso no Instagram.</p>
+      </div>
+      <button type="button" onclick="closeModal('privacy-modal')" class="btn btn-sm btn-primary w-full">Entendi</button>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 6. BANNER DE CONSENTIMENTO LGPD E NOTIFICAÇÕES TOAST                  -->
+  <!-- ===================================================================== -->
+  <div id="lgpd-banner" class="lgpd-banner">
+    <p style="font-size: 0.76rem; color: var(--text-muted); margin-bottom: 12px;">
+      🍪 Usamos cookies essenciais e métricas conforme a <strong>LGPD</strong> para melhorar sua experiência na 3D Diniz.
+    </p>
+    <div style="display: flex; gap: 8px;">
+      <button type="button" onclick="acceptLgpd()" class="btn btn-sm btn-primary">Aceitar</button>
+      <button type="button" onclick="openPrivacyModal()" class="btn btn-sm btn-subtle">Saiba mais</button>
+    </div>
+  </div>
+
+  <!-- Container onde aparecem os avisos rápidos no canto superior direito -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- ===================================================================== -->
+  <!-- 7. JAVASCRIPT PURO (TODA A LÓGICA INTERATIVA DA LOJA E DO PAINEL)     -->
+  <!-- ===================================================================== -->
+  <script>
+    /* =========================================================================
+       7.1. ESTADO GLOBAL E DADOS INICIAIS DA LOJA (appState)
+       Edite aqui seu número de WhatsApp padrão, chave PIX ou produtos iniciais.
+       ========================================================================= */
+    const appState = {
+      isAdminAuthenticated: false, // Controla se o painel do lojista está aberto
+      currentAdminSubTab: 'dashboard',
+      selectedCategory: 'Todos',
+      cart: [],
+      uploadedProductImagePreview: '',
+      uploadedQuoteFileName: '',
+
+      // Configurações comerciais padrão (podem ser editadas também pelo Painel Admin)
+      settings: {
+        whatsapp: '5522999999999',
+        pixKey: 'pagamentos@3ddiniz.com.br',
+        ga4Id: 'G-3DDINIZ2026',
+        gtmId: 'GTM-DINIZ3D',
+        pixelId: '9845120394812'
+      },
+
+      // Lista inicial de produtos exibidos na vitrine
+      products: [
+        {
+          id: 'prod-1',
+          name: 'Mascote Flamengo',
+          category: 'Action Figures',
+          price: 89.90,
+          material: 'PLA+ Preto Fosco & Ciano',
+          specs: '21cm altura • Alta resistência',
+          readyToShip: true,
+          rating: 4.9,
+          reviewsCount: 24,
+          image: '1.png',
+          description: 'Uma peça especial, cheia de detalhes, perfeita para decorar sua coleção ou presentear aquele torcedor apaixonado!'
+        },
+        {
+          id: 'prod-2',
+          name: 'Mascote Fluminense',
+          category: 'Action Figures',
+          price: 159.90,
+          material: 'Resina 8K + Pintura Manual',
+          specs: '22cm altura • Detalhes em alta definição',
+          readyToShip: true,
+          rating: 5.0,
+          reviewsCount: 31,
+          image: '2.png',
+          description: 'Escultura colecionável com alto nível de detalhamento na armadura e pintura sombreada artesanal.'
+        },
+        {
+          id: 'prod-3',
+          name: 'Vaso Geométrico Minimalista Twist',
+          category: 'Decoração',
+          price: 54.90,
+          material: 'PLA Silk Mármore / Branco',
+          specs: '18cm altura • Ideal para plantas secas',
+          readyToShip: true,
+          rating: 4.8,
+          reviewsCount: 18,
+          image: '3.png',
+          description: 'Design moderno em espiral paramétrica que transforma mesas de escritório, estantes e salas.'
+        },
+        {
+          id: 'prod-4',
+          name: 'Suporte Vertical Notebook / MacBook',
+          category: 'Utilidades & Setup',
+          price: 69.90,
+          material: 'PETG Carbono Reforçado',
+          specs: 'Abertura ajustável • Base antiderrapante',
+          readyToShip: true,
+          rating: 4.9,
+          reviewsCount: 15,
+          image: '4.png',
+          description: 'Otimize espaço na sua mesa mantendo o notebook fechado na vertical com ventilação livre.'
+        },
+        {
+          id: 'prod-5',
+          name: 'Dragão Articulado Cristal (45cm)',
+          category: 'Action Figures',
+          price: 94.90,
+          material: 'PLA Silk Dual-Color',
+          specs: '45cm comprimento • 100% articulado',
+          readyToShip: false,
+          rating: 5.0,
+          reviewsCount: 42,
+          image: '5.png',
+          description: 'Impresso em peça única com articulações fluidas e brilho metálico que muda conforme a luz.'
+        },
+        {
+          id: 'prod-6',
+          name: 'Engrenagem ou Peça de Reposição Sob Medida',
+          category: 'Peças Técnicas',
+          price: 45.00,
+          material: 'PETG / ABS Industrial',
+          specs: 'Modelagem sob medida • Alta durabilidade',
+          readyToShip: false,
+          rating: 4.9,
+          reviewsCount: 12,
+          image: '6.png',
+          description: 'Reproduzimos peças quebradas, suportes específicos e protótipos mecânicos em materiais resistentes.'
+        }
+      ],
+
+      // Pedidos PIX e mensagens recebidas no Painel Administrativo
+      inboxItems: [
+        {
+          id: 'ord-101',
+          type: 'PIX',
+          customer: 'João Pedro (Instagram)',
+          summary: '1x Suporte Headset Cyberpunk Oni',
+          total: 'R$ 89,90',
+          status: 'Aguardando Conferência PIX',
+          time: 'Hoje, 15:42'
+        },
+        {
+          id: 'quo-204',
+          type: 'ORÇAMENTO',
+          customer: 'Fernanda Alves',
+          summary: 'Arquivo: dragao_articulado.stl • Peça personalizada',
+          total: 'Sob Consulta',
+          status: 'Novo Contato',
+          time: 'Hoje, 14:10'
+        }
+      ],
+
+      // Registro de eventos de rastreamento exibidos no Dashboard
+      pixelLogs: [
+        { event: 'page_view', source: 'Instagram Bio', time: 'Agora' },
+        { event: 'view_item_list', source: 'Vitrine Principal', time: 'Agora' }
+      ],
+
+      // Dados semanais do gráfico do Dashboard
+      analyticsSeries: [
+        { day: 'Seg', visits: 142, conversions: 6 },
+        { day: 'Ter', visits: 168, conversions: 8 },
+        { day: 'Qua', visits: 155, conversions: 7 },
+        { day: 'Qui', visits: 194, conversions: 11 },
+        { day: 'Sex', visits: 221, conversions: 14 },
+        { day: 'Sáb', visits: 218, conversions: 12 },
+        { day: 'Dom', visits: 186, conversions: 8 }
+      ]
+    };
+
+    /* =========================================================================
+       7.2. CONTROLE DE TEMA (ABRE NO MODO CLARO E PERMITE ALTERNAR)
+       ========================================================================= */
+    function toggleDarkMode() {
+      const htmlEl = document.documentElement;
+      const isDark = htmlEl.classList.toggle('dark');
+
+      // Alterna os ícones de Sol e Lua no cabeçalho
+      document.getElementById('icon-moon').classList.toggle('hidden', isDark);
+      document.getElementById('icon-sun').classList.toggle('hidden', !isDark);
+
+      // Atualiza a cor da barra superior do navegador no celular
+      const metaTheme = document.querySelector('meta[name="theme-color"]');
+      if (metaTheme) {
+        metaTheme.setAttribute('content', isDark ? '#090d16' : '#f8fafc');
+      }
+    }
+
+    /* =========================================================================
+       7.3. UTILITÁRIOS DE NOTIFICAÇÃO (TOAST), MODAIS E ÁREA DE TRANSFERÊNCIA
+       ========================================================================= */
+    function showToast(message) {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+
+      const toast = document.createElement('div');
+      toast.className = 'toast-item animate-fade-up';
+      toast.textContent = message;
+      container.appendChild(toast);
+
+      // Remove a notificação automaticamente após 3,2 segundos
+      setTimeout(function () {
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity 0.25s ease';
+        setTimeout(function () {
+          toast.remove();
+        }, 260);
+      }, 3200);
+    }
+
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function openPrivacyModal() {
+      document.getElementById('privacy-modal').classList.remove('hidden');
+    }
+
+    function acceptLgpd() {
+      document.getElementById('lgpd-banner').classList.add('hidden');
+      showToast('Preferências de privacidade salvas.');
+    }
+
+    // Função compatível com qualquer navegador/iframe para copiar textos (PIX e Link da Bio)
+    function copyTextToClipboard(text) {
+      const tempInput = document.createElement('input');
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      tempInput.setSelectionRange(0, 99999);
+      try {
+        document.execCommand('copy');
+      } catch (err) {
+        console.warn('Não foi possível copiar automaticamente:', err);
+      }
+      document.body.removeChild(tempInput);
+    }
+
+    function copyBioLink() {
+      copyTextToClipboard(window.location.href);
+      showToast('🔗 Link da bio copiado para a área de transferência!');
+    }
+
+    /* =========================================================================
+       7.4. INTEGRAÇÃO COM WHATSAPP E REGISTRO DE EVENTOS (GA4 / PIXEL)
+       ========================================================================= */
+    function openDirectWhatsApp(customMessage) {
+      const cleanPhone = (appState.settings.whatsapp || '5522999999999').replace(/\D/g, '');
+      const encodedText = encodeURIComponent(customMessage || 'Olá Diniz! Vim pelo seu site e gostaria de fazer um pedido.');
+      trackAnalyticsEvent('contact_whatsapp', customMessage ? customMessage.slice(0, 32) : 'WhatsApp');
+      window.open('https://wa.me/' + cleanPhone + '?text=' + encodedText, '_blank', 'noopener,noreferrer');
+    }
+
+    function trackAnalyticsEvent(eventName, sourceDetail) {
+      const now = new Date();
+      const timeStr = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+
+      appState.pixelLogs.unshift({
+        event: eventName,
+        source: sourceDetail || 'Vitrine',
+        time: timeStr
+      });
+
+      if (appState.pixelLogs.length > 20) {
+        appState.pixelLogs.pop();
+      }
+      renderPixelLogs();
+
+      // Dispara para Google Analytics / Meta Pixel caso estejam instalados na página
+      try {
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', eventName, { event_label: sourceDetail });
+        }
+        if (typeof window.fbq === 'function') {
+          window.fbq('trackCustom', eventName, { detail: sourceDetail });
+        }
+      } catch (e) {
+        // Ignora caso scripts externos ainda não estejam ativos
+      }
+    }
+
+    function renderPixelLogs() {
+      const container = document.getElementById('pixel-events-log');
+      if (!container) return;
+
+      container.innerHTML = appState.pixelLogs.map(function (log) {
+        return (
+          '<div class="pixel-log-item">' +
+            '<div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">' +
+              '<strong style="color: var(--primary);">' + log.event + '</strong>' +
+              '<span style="color: var(--text-muted);"> • ' + log.source + '</span>' +
+            '</div>' +
+            '<span style="color: var(--text-muted); font-size: 0.68rem;">' + log.time + '</span>' +
+          '</div>'
+        );
+      }).join('');
+    }
+
+    /* =========================================================================
+       7.5. CATÁLOGO VISUAL DE PRODUTOS, BUSCA E FILTROS POR CATEGORIA
+       ========================================================================= */
+    function renderCategoryPills() {
+      const categories = ['Todos', 'Action Figures', 'Decoração', 'Utilidades & Setup', 'Peças Técnicas', 'Personalizados'];
+      const container = document.getElementById('category-pills');
+      if (!container) return;
+
+      container.innerHTML = categories.map(function (cat) {
+        const activeClass = appState.selectedCategory === cat ? ' active' : '';
+        return '<button type="button" onclick="selectCategory(\'' + cat + '\')" class="pill-btn' + activeClass + '">' + cat + '</button>';
+      }).join('');
+    }
+
+    function selectCategory(category) {
+      appState.selectedCategory = category;
+      renderCategoryPills();
+      filterAndRenderProducts();
+      trackAnalyticsEvent('filter_category', category);
+    }
+
+    function resetFilters() {
+      document.getElementById('search-input').value = '';
+      document.getElementById('filter-ready-only').checked = false;
+      appState.selectedCategory = 'Todos';
+      renderCategoryPills();
+      filterAndRenderProducts();
+    }
+
+    function filterAndRenderProducts() {
+      const searchText = (document.getElementById('search-input').value || '').toLowerCase().trim();
+      const readyOnly = document.getElementById('filter-ready-only').checked;
+
+      const filteredProducts = appState.products.filter(function (prod) {
+        const matchCategory = appState.selectedCategory === 'Todos' || prod.category === appState.selectedCategory;
+        const matchReady = !readyOnly || prod.readyToShip;
+        const matchSearch = !searchText ||
+          prod.name.toLowerCase().includes(searchText) ||
+          prod.category.toLowerCase().includes(searchText) ||
+          prod.description.toLowerCase().includes(searchText);
+        return matchCategory && matchReady && matchSearch;
+      });
+
+      const grid = document.getElementById('products-grid');
+      const emptyBox = document.getElementById('products-empty');
+
+      if (filteredProducts.length === 0) {
+        grid.innerHTML = '';
+        emptyBox.classList.remove('hidden');
+        return;
+      }
+
+      emptyBox.classList.add('hidden');
+      grid.innerHTML = filteredProducts.map(function (prod) {
+        const formattedPrice = prod.price.toFixed(2).replace('.', ',');
+        const readyBadge = prod.readyToShip ? '<span class="badge-ready">Pronta Entrega</span>' : '';
+
+        return (
+          '<article class="product-card">' +
+            '<div class="product-thumb" onclick="openProductDetail(\'' + prod.id + '\')">' +
+              '<img src="' + prod.image + '" alt="' + prod.name + '" onerror="this.onerror=null;this.src=\'https://placehold.co/600x450/f1f5f9/0891b2?text=3D+Diniz\';" />' +
+              readyBadge +
+            '</div>' +
+            '<div class="product-body">' +
+              '<span class="product-cat">' + prod.category + '</span>' +
+              '<h3 class="product-title" onclick="openProductDetail(\'' + prod.id + '\')">' + prod.name + '</h3>' +
+              '<p class="product-desc">' + prod.description + '</p>' +
+              '<div class="product-footer">' +
+                '<span class="product-price font-mono">R$ ' + formattedPrice + '</span>' +
+                '<button type="button" onclick="addToCart(\'' + prod.id + '\')" class="btn btn-sm btn-primary">Comprar</button>' +
+              '</div>' +
+            '</div>' +
+          '</article>'
+        );
+      }).join('');
+    }
+
+    /* =========================================================================
+       7.6. JANELA MODAL DE DETALHES DO PRODUTO
+       ========================================================================= */
+    function openProductDetail(productId) {
+      const prod = appState.products.find(function (p) { return p.id === productId; });
+      if (!prod) return;
+
+      trackAnalyticsEvent('view_item', prod.name);
+      const formattedPrice = prod.price.toFixed(2).replace('.', ',');
+
+      const content = document.getElementById('product-detail-content');
+      content.innerHTML =
+        '<div class="product-detail-grid">' +
+          '<img src="' + prod.image + '" alt="' + prod.name + '" class="product-detail-img" onerror="this.onerror=null;this.src=\'https://placehold.co/600x450/f1f5f9/0891b2?text=3D+Diniz\';" />' +
+          '<div class="modal-body" style="display: flex; flex-direction: column; justify-content: space-between; gap: 16px;">' +
+            '<div>' +
+              '<div style="display: flex; justify-content: space-between; align-items: center;">' +
+                '<span class="font-mono" style="font-size: 0.75rem; color: var(--primary); font-weight: 700;">' + prod.category + '</span>' +
+                '<button type="button" onclick="closeModal(\'product-detail-modal\')" class="icon-btn" style="width: 30px; height: 30px;">✕</button>' +
+              '</div>' +
+              '<h3 style="font-size: 1.25rem; font-weight: 800; margin: 6px 0;">' + prod.name + '</h3>' +
+              '<p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 10px;">★ ' + prod.rating.toFixed(1) + ' (' + prod.reviewsCount + ' avaliações) • ' + prod.specs + '</p>' +
+              '<p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 12px;">' + prod.description + '</p>' +
+              '<div style="padding: 10px 12px; border-radius: 12px; background-color: var(--bg-subtle); font-size: 0.78rem;">' +
+                '<span style="color: var(--text-muted);">Material:</span> <strong>' + prod.material + '</strong>' +
+              '</div>' +
+            '</div>' +
+            '<div style="border-top: 1px solid var(--border-color); padding-top: 14px; display: flex; flex-direction: column; gap: 8px;">' +
+              '<div style="display: flex; justify-content: space-between; align-items: baseline;">' +
+                '<span style="font-size: 0.78rem; color: var(--text-muted);">Valor unitário:</span>' +
+                '<span class="font-mono" style="font-size: 1.4rem; font-weight: 800; color: var(--primary);">R$ ' + formattedPrice + '</span>' +
+              '</div>' +
+              '<button type="button" onclick="addToCart(\'' + prod.id + '\'); closeModal(\'product-detail-modal\'); openCartModal();" class="btn btn-sm btn-primary w-full">🛒 Comprar Agora (PIX ou WhatsApp)</button>' +
+              '<button type="button" onclick="openDirectWhatsApp(\'Olá Diniz! Tenho interesse na peça: ' + prod.name + ' (R$ ' + formattedPrice + ').\')" class="btn btn-sm btn-success w-full">Tirar Dúvida no WhatsApp</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+
+      document.getElementById('product-detail-modal').classList.remove('hidden');
+    }
+
+    /* =========================================================================
+       7.7. SACOLA DE COMPRAS E CHECKOUT (PIX COPIA E COLA / WHATSAPP)
+       ========================================================================= */
+    function updateCartBadge() {
+      const badge = document.getElementById('cart-badge');
+      const totalQty = appState.cart.reduce(function (sum, item) { return sum + item.qty; }, 0);
+      badge.textContent = totalQty;
+    }
+
+    function addToCart(productId) {
+      const prod = appState.products.find(function (p) { return p.id === productId; });
+      if (!prod) return;
+
+      const existingItem = appState.cart.find(function (item) { return item.product.id === productId; });
+      if (existingItem) {
+        existingItem.qty += 1;
+      } else {
+        appState.cart.push({ product: prod, qty: 1 });
+      }
+
+      updateCartBadge();
+      trackAnalyticsEvent('add_to_cart', prod.name);
+      showToast('🛒 "' + prod.name + '" adicionado à sacola!');
+    }
+
+    function updateCartItemQty(productId, delta) {
+      const index = appState.cart.findIndex(function (item) { return item.product.id === productId; });
+      if (index === -1) return;
+
+      appState.cart[index].qty += delta;
+      if (appState.cart[index].qty <= 0) {
+        appState.cart.splice(index, 1);
+      }
+
+      updateCartBadge();
+      renderCartItems();
+    }
+
+    function openCartModal() {
+      document.getElementById('pix-checkout-box').classList.add('hidden');
+      renderCartItems();
+      document.getElementById('cart-modal').classList.remove('hidden');
+    }
+
+    function renderCartItems() {
+      const container = document.getElementById('cart-items-container');
+      const totalEl = document.getElementById('cart-total-price');
+      const footerEl = document.getElementById('cart-footer');
+
+      if (appState.cart.length === 0) {
+        container.innerHTML =
+          '<div style="text-align: center; padding: 28px 10px;">' +
+            '<p style="font-weight: 700; margin-bottom: 4px;">Sua sacola está vazia</p>' +
+            '<p style="font-size: 0.78rem; color: var(--text-muted);">Escolha uma peça pronta no catálogo para começar.</p>' +
+          '</div>';
+        totalEl.textContent = 'R$ 0,00';
+        footerEl.classList.add('hidden');
+        document.getElementById('pix-checkout-box').classList.add('hidden');
+        return;
+      }
+
+      footerEl.classList.remove('hidden');
+      let total = 0;
+
+      container.innerHTML = appState.cart.map(function (item) {
+        const subtotal = item.product.price * item.qty;
+        total += subtotal;
+        return (
+          '<div class="cart-item-row">' +
+            '<img src="' + item.product.image + '" alt="' + item.product.name + '" style="width: 48px; height: 48px; border-radius: 10px; object-fit: cover;" />' +
+            '<div style="flex: 1; min-width: 0;">' +
+              '<p style="font-size: 0.82rem; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">' + item.product.name + '</p>' +
+              '<p class="font-mono" style="font-size: 0.78rem; color: var(--primary); font-weight: 700;">R$ ' + subtotal.toFixed(2).replace('.', ',') + '</p>' +
+            '</div>' +
+            '<div class="qty-controls">' +
+              '<button type="button" onclick="updateCartItemQty(\'' + item.product.id + '\', -1)" class="qty-btn">-</button>' +
+              '<span class="font-mono" style="width: 20px; text-align: center; font-size: 0.8rem; font-weight: 700;">' + item.qty + '</span>' +
+              '<button type="button" onclick="updateCartItemQty(\'' + item.product.id + '\', 1)" class="qty-btn">+</button>' +
+            '</div>' +
+          '</div>'
+        );
+      }).join('');
+
+      totalEl.textContent = 'R$ ' + total.toFixed(2).replace('.', ',');
+    }
+
+    function showPixCheckout() {
+      if (appState.cart.length === 0) return;
+
+      const total = appState.cart.reduce(function (sum, item) { return sum + item.product.price * item.qty; }, 0);
+      const pixKey = appState.settings.pixKey || 'pagamentos@3ddiniz.com.br';
+      const pixPayload = '00020126580014BR.GOV.BCB.PIX01' + String(pixKey.length).padStart(2, '0') + pixKey + '520400005303986540' + total.toFixed(2) + '5802BR59083DDINIZ6009CAMPOSRJ62070503***6304A1B2';
+
+      document.getElementById('pix-copy-paste-code').value = pixPayload;
+      document.getElementById('pix-checkout-box').classList.remove('hidden');
+      trackAnalyticsEvent('begin_checkout_pix', 'R$ ' + total.toFixed(2));
+    }
+
+    function copyPixCode() {
+      const code = document.getElementById('pix-copy-paste-code').value;
+      if (!code) return;
+      copyTextToClipboard(code);
+      showToast('💠 Código PIX Copia e Cola copiado!');
+    }
+
+    function confirmPixOrder() {
+      if (appState.cart.length === 0) return;
+
+      const total = appState.cart.reduce(function (sum, item) { return sum + item.product.price * item.qty; }, 0);
+      const summary = appState.cart.map(function (item) { return item.qty + 'x ' + item.product.name; }).join(', ');
+
+      appState.inboxItems.unshift({
+        id: 'ord-' + Math.floor(Math.random() * 900 + 100),
+        type: 'PIX',
+        customer: 'Cliente Loja Online (PIX)',
+        summary: summary,
+        total: 'R$ ' + total.toFixed(2).replace('.', ','),
+        status: 'PIX Confirmado pelo Cliente',
+        time: 'Agora'
+      });
+
+      const ordersEl = document.getElementById('kpi-orders');
+      if (ordersEl) ordersEl.textContent = parseInt(ordersEl.textContent || '19', 10) + 1;
+
+      trackAnalyticsEvent('purchase_pix', 'R$ ' + total.toFixed(2));
+      appState.cart = [];
+      updateCartBadge();
+      closeModal('cart-modal');
+      showToast('🎉 Pedido registrado! Envie o comprovante no WhatsApp se desejar.');
+    }
+
+    function checkoutViaWhatsApp() {
+      if (appState.cart.length === 0) return;
+
+      const total = appState.cart.reduce(function (sum, item) { return sum + item.product.price * item.qty; }, 0);
+      const lines = appState.cart.map(function (item) {
+        return '• ' + item.qty + 'x ' + item.product.name + ' (R$ ' + (item.product.price * item.qty).toFixed(2).replace('.', ',') + ')';
+      }).join('\n');
+
+      appState.inboxItems.unshift({
+        id: 'wpp-' + Math.floor(Math.random() * 900 + 100),
+        type: 'WHATSAPP',
+        customer: 'Cliente Sacola Online',
+        summary: appState.cart.map(function (item) { return item.qty + 'x ' + item.product.name; }).join(', '),
+        total: 'R$ ' + total.toFixed(2).replace('.', ','),
+        status: 'Encaminhado ao WhatsApp',
+        time: 'Agora'
+      });
+
+      const msg = 'Olá Diniz! Gostaria de fechar o seguinte pedido pelo site:\n\n' + lines + '\n\n*Total: R$ ' + total.toFixed(2).replace('.', ',') + '*';
+      appState.cart = [];
+      updateCartBadge();
+      closeModal('cart-modal');
+      openDirectWhatsApp(msg);
+    }
+
+    /* =========================================================================
+       7.8. FORMULÁRIO DE CONTATO E ORÇAMENTO PERSONALIZADO
+       ========================================================================= */
+    function handleQuoteFileChange(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      appState.uploadedQuoteFileName = file.name;
+      document.getElementById('quote-file-label').textContent = '📎 ' + file.name;
+      showToast('Arquivo anexado!');
+    }
+
+    function submitCustomQuote(event) {
+      event.preventDefault();
+      const name = document.getElementById('quote-name').value.trim();
+      const whatsapp = document.getElementById('quote-whatsapp').value.trim();
+      const notes = document.getElementById('quote-notes').value.trim();
+      const fileInfo = appState.uploadedQuoteFileName ? ' • Arquivo: ' + appState.uploadedQuoteFileName : '';
+
+      appState.inboxItems.unshift({
+        id: 'msg-' + Math.floor(Math.random() * 900 + 100),
+        type: 'CONTATO',
+        customer: name + ' (' + whatsapp + ')',
+        summary: notes + fileInfo,
+        total: 'Sob Consulta',
+        status: 'Novo Contato',
+        time: 'Agora'
+      });
+
+      const leadsEl = document.getElementById('kpi-leads');
+      if (leadsEl) leadsEl.textContent = parseInt(leadsEl.textContent || '47', 10) + 1;
+
+      trackAnalyticsEvent('generate_lead_contact', name);
+      event.target.reset();
+      appState.uploadedQuoteFileName = '';
+      document.getElementById('quote-file-label').textContent = 'Anexar arquivo 3D ou foto';
+      showToast('✅ Mensagem enviada! Responderemos em breve no seu WhatsApp.');
+    }
+
+    /* =========================================================================
+       7.9. PAINEL ADMINISTRATIVO (LOGIN, ABAS E RENDERIZAÇÃO)
+       ========================================================================= */
+    function updatePortalVisibility() {
+      const storefrontEl = document.getElementById('storefront-view');
+      const adminEl = document.getElementById('view-admin');
+
+      if (appState.isAdminAuthenticated) {
+        storefrontEl.classList.add('hidden');
+        adminEl.classList.remove('hidden');
+        renderPureSvgChart();
+        renderAdminProductsList();
+        renderAdminInbox();
+      } else {
+        adminEl.classList.add('hidden');
+        storefrontEl.classList.remove('hidden');
+      }
+    }
+
+    function handleAdminAccess() {
+      if (appState.isAdminAuthenticated) {
+        updatePortalVisibility();
+      } else {
+        document.getElementById('admin-login-modal').classList.remove('hidden');
+      }
+    }
+
+    function fillDemoAdminCredentials() {
+      document.getElementById('login-email').value = 'diniz@3ddiniz.com.br';
+      document.getElementById('login-password').value = '3ddiniz2026';
+    }
+
+    function submitAdminLogin(event) {
+      event.preventDefault();
+      appState.isAdminAuthenticated = true;
+      closeModal('admin-login-modal');
+      updatePortalVisibility();
+      showToast('🔓 Bem-vindo ao Painel do Lojista!');
+    }
+
+    function logoutAdmin() {
+      appState.isAdminAuthenticated = false;
+      updatePortalVisibility();
+      showToast('Você voltou para a vitrine da loja.');
+    }
+
+    function switchAdminSubTab(subTab) {
+      appState.currentAdminSubTab = subTab;
+      const tabs = ['dashboard', 'products', 'inbox', 'settings'];
+
+      tabs.forEach(function (tabName) {
+        document.getElementById('admin-sub-' + tabName).classList.toggle('hidden', tabName !== subTab);
+        const btn = document.getElementById('admin-sub-btn-' + tabName);
+        if (btn) {
+          btn.classList.toggle('active', tabName === subTab);
+        }
+      });
+
+      if (subTab === 'dashboard') renderPureSvgChart();
+      if (subTab === 'products') renderAdminProductsList();
+      if (subTab === 'inbox') renderAdminInbox();
+      if (subTab === 'settings') {
+        document.getElementById('cfg-whatsapp').value = appState.settings.whatsapp;
+        document.getElementById('cfg-pix').value = appState.settings.pixKey;
+        document.getElementById('cfg-ga4').value = appState.settings.ga4Id;
+        document.getElementById('cfg-gtm').value = appState.settings.gtmId;
+        document.getElementById('cfg-pixel').value = appState.settings.pixelId;
+      }
+    }
+
+    /* =========================================================================
+       7.10. CRUD DE PRODUTOS (ADICIONAR, EDITAR E EXCLUIR PEÇAS)
+       ========================================================================= */
+    function openProductEditorModal(productId) {
+      const form = document.getElementById('product-editor-form');
+      form.reset();
+      appState.uploadedProductImagePreview = '';
+
+      if (productId) {
+        const prod = appState.products.find(function (p) { return p.id === productId; });
+        if (!prod) return;
+
+        document.getElementById('editor-modal-title').textContent = 'Editar Peça 3D';
+        document.getElementById('edit-prod-id').value = prod.id;
+        document.getElementById('edit-prod-name').value = prod.name;
+        document.getElementById('edit-prod-category').value = prod.category;
+        document.getElementById('edit-prod-price').value = prod.price;
+        document.getElementById('edit-prod-material').value = prod.material;
+        document.getElementById('edit-prod-specs').value = prod.specs;
+        document.getElementById('edit-prod-ready').checked = prod.readyToShip;
+        document.getElementById('edit-prod-desc').value = prod.description;
+        document.getElementById('edit-prod-url').value = prod.image.indexOf('blob:') === 0 ? '' : prod.image;
+        document.getElementById('edit-prod-preview').src = prod.image;
+        appState.uploadedProductImagePreview = prod.image;
+        document.getElementById('edit-prod-img-status').textContent = 'Imagem atual carregada. Você pode substituir por upload ou nova URL.';
+      } else {
+        document.getElementById('editor-modal-title').textContent = 'Cadastrar Nova Peça 3D';
+        document.getElementById('edit-prod-id').value = '';
+        document.getElementById('edit-prod-preview').src = 'https://placehold.co/400x300/f1f5f9/0891b2?text=Preview+3D';
+        document.getElementById('edit-prod-img-status').textContent = 'Envie uma foto do seu celular/PC ou cole um link direto da imagem.';
+      }
+
+      document.getElementById('product-editor-modal').classList.remove('hidden');
+    }
+
+    function handleProductImageUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const objectUrl = URL.createObjectURL(file);
+      appState.uploadedProductImagePreview = objectUrl;
+      document.getElementById('edit-prod-preview').src = objectUrl;
+      document.getElementById('edit-prod-url').value = '';
+      document.getElementById('edit-prod-img-status').textContent = '📁 Foto carregada: ' + file.name;
+    }
+
+    function handleProductImageUrlInput(event) {
+      const url = event.target.value.trim();
+      if (!url) return;
+      appState.uploadedProductImagePreview = url;
+      document.getElementById('edit-prod-preview').src = url;
+      document.getElementById('edit-prod-img-status').textContent = '🌐 Usando URL externa da imagem.';
+    }
+
+    function saveProductFromEditor(event) {
+      event.preventDefault();
+      const id = document.getElementById('edit-prod-id').value || ('prod-' + Date.now());
+      const name = document.getElementById('edit-prod-name').value.trim();
+      const category = document.getElementById('edit-prod-category').value;
+      const price = parseFloat(document.getElementById('edit-prod-price').value);
+      const material = document.getElementById('edit-prod-material').value.trim() || 'PLA+';
+      const specs = document.getElementById('edit-prod-specs').value.trim() || 'Impressão de alta precisão';
+      const readyToShip = document.getElementById('edit-prod-ready').checked;
+      const description = document.getElementById('edit-prod-desc').value.trim() || 'Peça impressa em 3D com acabamento cuidadoso.';
+      const urlInput = document.getElementById('edit-prod-url').value.trim();
+
+      const finalImage = appState.uploadedProductImagePreview || urlInput || ('https://placehold.co/600x450/f1f5f9/0891b2?text=' + encodeURIComponent(name));
+
+      const existingIdx = appState.products.findIndex(function (p) { return p.id === id; });
+      const productObj = {
+        id: id,
+        name: name,
+        category: category,
+        price: price,
+        material: material,
+        specs: specs,
+        readyToShip: readyToShip,
+        rating: existingIdx >= 0 ? appState.products[existingIdx].rating : 5.0,
+        reviewsCount: existingIdx >= 0 ? appState.products[existingIdx].reviewsCount : 1,
+        image: finalImage,
+        description: description
+      };
+
+      if (existingIdx >= 0) {
+        appState.products[existingIdx] = productObj;
+        showToast('✓ Produto atualizado no catálogo!');
+      } else {
+        appState.products.unshift(productObj);
+        showToast('🎉 Nova peça publicada na vitrine!');
+      }
+
+      closeModal('product-editor-modal');
+      filterAndRenderProducts();
+      renderAdminProductsList();
+    }
+
+    function confirmDeleteProduct(productId) {
+      const prod = appState.products.find(function (p) { return p.id === productId; });
+      if (!prod) return;
+
+      document.getElementById('confirm-modal-title').textContent = 'Excluir Produto';
+      document.getElementById('confirm-modal-text').textContent = 'Deseja remover "' + prod.name + '" da vitrine?';
+
+      const actionBtn = document.getElementById('confirm-modal-action-btn');
+      actionBtn.onclick = function () {
+        appState.products = appState.products.filter(function (p) { return p.id !== productId; });
+        closeModal('confirm-modal');
+        filterAndRenderProducts();
+        renderAdminProductsList();
+        showToast('Produto removido.');
+      };
+
+      document.getElementById('confirm-modal').classList.remove('hidden');
+    }
+
+    function renderAdminProductsList() {
+      document.getElementById('admin-prod-count').textContent = appState.products.length;
+      const container = document.getElementById('admin-products-list');
+      if (!container) return;
+
+      container.innerHTML = appState.products.map(function (prod) {
+        const badgeStyle = prod.readyToShip
+          ? 'background: rgba(16,185,129,0.14); color: var(--success-hover);'
+          : 'background: rgba(245,158,11,0.14); color: var(--warning);';
+        const badgeText = prod.readyToShip ? 'Pronta Entrega' : 'Sob Encomenda';
+
+        return (
+          '<div class="admin-product-row">' +
+            '<div class="admin-product-info">' +
+              '<img src="' + prod.image + '" alt="' + prod.name + '" class="admin-product-thumb" />' +
+              '<div>' +
+                '<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">' +
+                  '<strong style="font-size: 0.9rem;">' + prod.name + '</strong>' +
+                  '<span style="padding: 2px 8px; border-radius: 6px; font-size: 0.68rem; font-weight: 700; ' + badgeStyle + '">' + badgeText + '</span>' +
+                '</div>' +
+                '<p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;">' +
+                  prod.category + ' • ' + prod.material + ' • <strong class="font-mono" style="color: var(--primary);">R$ ' + prod.price.toFixed(2).replace('.', ',') + '</strong>' +
+                '</p>' +
+              '</div>' +
+            '</div>' +
+            '<div style="display: flex; gap: 8px;">' +
+              '<button type="button" onclick="openProductEditorModal(\'' + prod.id + '\')" class="btn btn-sm btn-subtle">✏️ Editar</button>' +
+              '<button type="button" onclick="confirmDeleteProduct(\'' + prod.id + '\')" class="btn btn-sm btn-danger">🗑️ Excluir</button>' +
+            '</div>' +
+          '</div>'
+        );
+      }).join('');
+    }
+
+    function renderAdminInbox() {
+      document.getElementById('admin-inbox-count').textContent = appState.inboxItems.length;
+      const container = document.getElementById('admin-orders-quotes-list');
+      if (!container) return;
+
+      container.innerHTML = appState.inboxItems.map(function (item) {
+        return (
+          '<div class="inbox-card">' +
+            '<div style="display: flex; justify-content: space-between; align-items: center;">' +
+              '<span class="hero-pill font-mono" style="margin: 0; font-size: 0.68rem;">' + item.type + '</span>' +
+              '<span style="font-size: 0.7rem; color: var(--text-muted);">' + item.time + '</span>' +
+            '</div>' +
+            '<strong style="font-size: 0.85rem;">' + item.customer + '</strong>' +
+            '<p style="font-size: 0.78rem; color: var(--text-muted);">' + item.summary + '</p>' +
+            '<div style="display: flex; justify-content: space-between; font-size: 0.74rem; padding-top: 4px;">' +
+              '<strong class="font-mono" style="color: var(--primary);">' + item.total + '</strong>' +
+              '<span style="color: var(--text-muted);">' + item.status + '</span>' +
+            '</div>' +
+          '</div>'
+        );
+      }).join('');
+    }
+
+    function saveStoreSettings(event) {
+      event.preventDefault();
+      appState.settings.whatsapp = document.getElementById('cfg-whatsapp').value.trim();
+      appState.settings.pixKey = document.getElementById('cfg-pix').value.trim();
+      appState.settings.ga4Id = document.getElementById('cfg-ga4').value.trim();
+      appState.settings.gtmId = document.getElementById('cfg-gtm').value.trim();
+      appState.settings.pixelId = document.getElementById('cfg-pixel').value.trim();
+      showToast('✅ Configurações de PIX, WhatsApp e Pixels atualizadas!');
+    }
+
+    /* =========================================================================
+       7.11. GRÁFICO DE BARRAS EM SVG PURO (SEM BIBLIOTECAS EXTERNAS)
+       ========================================================================= */
+    function renderPureSvgChart() {
+      const container = document.getElementById('analytics-chart');
+      if (!container) return;
+
+      const data = appState.analyticsSeries;
+      const maxVisits = 250;
+      const svgWidth = 560;
+      const svgHeight = 220;
+      const chartBottom = 185;
+      const chartMaxBarHeight = 155;
+      const groupWidth = svgWidth / data.length;
+
+      let barsSvg = '';
+      data.forEach(function (item, idx) {
+        const xBase = idx * groupWidth + 18;
+        const visitHeight = Math.round((item.visits / maxVisits) * chartMaxBarHeight);
+        const convHeight = Math.round(((item.conversions * 6) / maxVisits) * chartMaxBarHeight);
+
+        // Barra azul/ciano de Visitas
+        barsSvg += '<rect x="' + xBase + '" y="' + (chartBottom - visitHeight) + '" width="18" height="' + visitHeight + '" rx="4" fill="#06b6d4"></rect>';
+        // Barra verde de Conversões
+        barsSvg += '<rect x="' + (xBase + 22) + '" y="' + (chartBottom - convHeight) + '" width="18" height="' + convHeight + '" rx="4" fill="#10b981"></rect>';
+        // Rótulo do dia da semana
+        barsSvg += '<text x="' + (xBase + 20) + '" y="206" text-anchor="middle" fill="#64748b" font-size="11">' + item.day + '</text>';
+      });
+
+      container.innerHTML =
+        '<svg viewBox="0 0 ' + svgWidth + ' ' + svgHeight + '" width="100%" height="100%" preserveAspectRatio="none">' +
+          '<line x1="10" y1="' + chartBottom + '" x2="' + (svgWidth - 10) + '" y2="' + chartBottom + '" stroke="#cbd5e1" stroke-width="1" />' +
+          barsSvg +
+        '</svg>';
+    }
+
+    /* =========================================================================
+       7.12. INICIALIZAÇÃO AUTOMÁTICA QUANDO A PÁGINA TERMINA DE CARREGAR
+       ========================================================================= */
+    window.onload = function () {
+      renderCategoryPills();
+      filterAndRenderProducts();
+      renderPixelLogs();
+      renderAdminProductsList();
+      renderAdminInbox();
+    };
+  </script>
+</body>
+</html>
